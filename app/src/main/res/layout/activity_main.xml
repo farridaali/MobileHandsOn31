@@ -9,8 +9,8 @@
 
     <CalendarView
         android:id="@+id/CalenderID"
-        android:layout_width="348dp"
-        android:layout_height="326dp"
+        android:layout_width="407dp"
+        android:layout_height="330dp"
         android:layout_marginBottom="256dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,40 +24,43 @@
         android:layout_marginBottom="40dp"
         android:text="Add"
         app:layout_constraintBottom_toTopOf="@+id/ListID"
+        app:layout_constraintEnd_toStartOf="@+id/FilterID"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CalenderID"
-        tools:layout_editor_absoluteX="45dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/FilterID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
         android:text="Filter"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ShowID"
         app:layout_constraintTop_toBottomOf="@+id/CalenderID"
-        app:layout_constraintVertical_bias="0.149"
-        tools:layout_editor_absoluteX="171dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/ShowID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:text="Show All"
         app:layout_constraintBottom_toTopOf="@+id/ListID"
-        app:layout_constraintStart_toEndOf="@+id/FilterID"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CalenderID"
-        app:layout_constraintVertical_bias="0.492" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ListView
         android:id="@+id/ListID"
-        android:layout_width="320dp"
-        android:layout_height="145dp"
+        android:layout_width="388dp"
+        android:layout_height="230dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/FilterID"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/expense"

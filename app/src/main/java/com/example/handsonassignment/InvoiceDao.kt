@@ -17,6 +17,6 @@ interface InvoiceDao {
     suspend fun getInvoiceByDate(selectedDate: String): List<Invoice>
 
     @Query("SELECT SUM(amount) FROM invoices WHERE date = :selectedDate")
-    suspend fun getSumTotalByDate(selectedDate: String): Double?
+    suspend fun getSumTotalByDate(selectedDate: String?): Double?
 
 }

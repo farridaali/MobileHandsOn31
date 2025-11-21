@@ -1,5 +1,6 @@
 package com.example.handsonassignment
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -43,13 +44,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         db = InvoiceDatabase.getInstance(this)
-        expense = findViewById(R.id.expense)
-        amount = findViewById(R.id.amountID)
-        add = findViewById(R.id.addID)
-        filter = findViewById(R.id.FilterID)
-        showAll = findViewById(R.id.ShowID)
-        calender = findViewById(R.id.CalenderID)
-        list = findViewById(R.id.ListID)
+        expense = findViewById<EditText>(R.id.expense)
+        amount = findViewById<EditText>(R.id.amountID)
+        add = findViewById<Button>(R.id.addID)
+        filter = findViewById<Button>(R.id.FilterID)
+        showAll = findViewById<Button>(R.id.ShowID)
+        calender = findViewById<CalendarView>(R.id.CalenderID)
+        list = findViewById<ListView>(R.id.ListID)
 
 
         var selectedDate = ""
@@ -94,21 +95,22 @@ class MainActivity : AppCompatActivity() {
             }
             else
             {
-                Toast.makeText(this,"Expense cannot be empty!",
+                Toast.makeText(this,"Select Date!",
                     Toast.LENGTH_SHORT).show()
             }
         }
         showAll.setOnClickListener {
 
 
-                lifecycleScope.launch(Dispatchers.IO) {
-                    db.InvoiceDao().getAllInvoices()
-                    withContext(Dispatchers.Main)
-                    {
-                        loadInvoice()
-                    }
+            lifecycleScope.launch(Dispatchers.IO) {
+                db.InvoiceDao().getAllInvoices()
+                withContext(Dispatchers.Main)
+                {
+                    loadInvoice()
                 }
+            }
         }
+
 
     }
 
@@ -124,6 +126,13 @@ class MainActivity : AppCompatActivity() {
                         "Name: ${invoice.name}, Amount: ${invoice.amount}, Date: ${invoice.date}"}
                 )
                 list.adapter = adapter
+
+                list.setOnItemClickListener { _, _, position, _ ->
+                    val selectedInvoice = Invoices[position]
+                    val  intent = Intent(this@MainActivity, TotalAmount::class.java)
+                    intent.putExtra("date", selectedInvoice.date)
+                    startActivity(intent)
+                }
             }
         }
     }
@@ -141,8 +150,20 @@ class MainActivity : AppCompatActivity() {
                         "Name: ${invoice.name}, Amount: ${invoice.amount}, Date: ${invoice.date}"}
                 )
                 list.adapter = adapter
+
+
+                list.setOnItemClickListener { _, _, position, _ ->
+                    val selectedInvoice = Invoices[position]
+                    val  intent = Intent(this@MainActivity, TotalAmount::class.java)
+                    intent.putExtra("date", selectedInvoice.date)
+                    startActivity(intent)
+                }
+
             }
         }
     }
-
 }
+
+
+
+
